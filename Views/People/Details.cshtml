@@ -1,0 +1,12 @@
+﻿@model TaxWebApp.Models.Person
+@{
+    var person = (Person) ViewData["examplePerson"];
+}
+<h1>
+    Name: @person.FullName()
+
+    <br />
+
+    ID: @person.Id
+
+</h1>

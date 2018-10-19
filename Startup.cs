@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TaxWebApp.Data;
 
 namespace TaxWebApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private IConfiguration _config;
+
+        public Startup(IConfiguration config)
         {
-            Configuration = configuration;
+            _config = config;
         }
 
         public IConfiguration Configuration { get; }
@@ -30,9 +34,16 @@ namespace TaxWebApp
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
-
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+
+            //SQL Server Stuff
+            services.AddDbContext<TaxDataContext>(options =>
+            {
+                string connectionString = _config.GetConnectionString("LoanerDataContext");
+                options.UseSqlServer(connectionString);
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
