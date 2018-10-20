@@ -6,6 +6,7 @@ ReadMe: For showing basic goals and what you are working on
 
 Google Docs: For details about the project
 
+[Project Page](https://github.com/paysonblackwell/TaxWebApp/projects/1): For details about stuff to work on?
 
 Maybe put your name next to something if you are working on it (just an idea), also let us know in Discord
 
