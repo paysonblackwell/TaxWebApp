@@ -23,7 +23,7 @@ namespace TaxWebApp
             _config = config;
         }
 
-        public IConfiguration Configuration { get; }
+        public IConfiguration Configuration { get; } //Don't know if this one is needed
 
         public void ConfigureServices(IServiceCollection services)
         {
@@ -47,6 +47,7 @@ namespace TaxWebApp
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            //Default stuff
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -57,6 +58,7 @@ namespace TaxWebApp
                 app.UseHsts();
             }
 
+            //Default stuff
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();

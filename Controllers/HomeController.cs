@@ -15,6 +15,12 @@ namespace TaxWebApp.Controllers
             return View();
         }
 
+
+
+        // DEFAULT STUFF
+        /*************************************************************************/
+        /*************************************************************************/
+
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
