@@ -1,9 +1,13 @@
 # TaxWebApp
 
-Link to Google Docs: https://docs.google.com/document/d/163h1uI-lNgnp5Dre6-7JVy0O0x2vRgJhKEvBpIZmorI/edit
-(Although this ReadMe will probably replace the need for it)
+**[Link to Shared Google Docs](https://docs.google.com/document/d/163h1uI-lNgnp5Dre6-7JVy0O0x2vRgJhKEvBpIZmorI/edit)**
 
-Maybe put your name next to something if you are working on it (just an idea)
+ReadMe: For showing basic goals and what you are working on
+
+Google Docs: For details about the project
+
+
+Maybe put your name next to something if you are working on it (just an idea), also let us know in Discord
 
 **Basic Goals:**
 * View information from database in easy-to-read tables.
@@ -21,7 +25,3 @@ Maybe put your name next to something if you are working on it (just an idea)
   * Or at least more Dummy Stuff that is automatically put into the local DB
 * API to access stuff
 * More stretch goal stuff
-
-
-    
-    
