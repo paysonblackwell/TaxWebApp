@@ -30,7 +30,8 @@ namespace TaxWebApp.Controllers
                 Id = 1
             };
 
-            //Adding example to DB if it isn't already a part of it
+            
+            //Checking to see if the example is already a part of it
             bool doesExist = false;
             foreach(Person p in _contextDB.Person.ToArray())
             {
@@ -41,8 +42,8 @@ namespace TaxWebApp.Controllers
                 }
             }
 
-           
-            if(doesExist == false)
+            //If Example hasn't been added, then add it and save the change
+            if (doesExist == false)
             {
                 //Adding the example to the DB
                 _contextDB.Person.Add(examplePerson); //Other way: _context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;

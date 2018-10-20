@@ -17,7 +17,7 @@ namespace TaxWebApp.Data
         }
 
         /*
-         * Additional steps needed to create and sync local DB
+         * Additional steps that might needed to create and sync local DB if something is broken
          * https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/
          * 
          * Run in Package Mangager Console: 
