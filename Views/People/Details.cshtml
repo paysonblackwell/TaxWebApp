@@ -1,12 +1,20 @@
 ﻿@model TaxWebApp.Models.Person
 @{
-    var person = (Person) ViewData["examplePerson"];
+    //get array of Persons
+    Person[] people = (Person[])ViewData["peopleArray"];
 }
-<h1>
-    Name: @person.FullName()
 
-    <br />
+@foreach (Person p in people)
+{
+    //Display the Array
+    <h1>
+        Name: @p.FullName()
+        <br />
+        ID: @p.Id
+        <br />
+        <br />
+    </h1>
+}
 
-    ID: @person.Id
 
-</h1>
+

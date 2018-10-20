@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using TaxWebApp.Data;
@@ -12,18 +14,15 @@ namespace TaxWebApp.Controllers
     public class PeopleController : Controller
     {
         //DB STUFF
-        private readonly TaxDataContext _context;
-
+        private readonly TaxDataContext _contextDB;
         public PeopleController(TaxDataContext context)
         {
-            _context = context;
+            _contextDB = context;
         }
-
 
         public ActionResult Details(int id)
         {
             //Making temp data to upload to DB
-
             Person examplePerson = new Person()
             {
                 FirstName = "Payson",
@@ -31,15 +30,46 @@ namespace TaxWebApp.Controllers
                 Id = 1
             };
 
-            /*
+            //Adding example to DB if it isn't already a part of it
+            bool doesExist = false;
+            foreach(Person p in _contextDB.Person.ToArray())
+            {
+                if(p.Id == 1)
+                {
+                    doesExist = true;
+                    break;
+                }
+            }
 
-            _context.Add(examplePerson); //_context.Person.Add(examplePerson)
-            //_context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;
-            _context.SaveChanges();
-            */
+           
+            if(doesExist == false)
+            {
+                //Adding the example to the DB
+                _contextDB.Person.Add(examplePerson); //Other way: _context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;
 
-            ViewData["examplePerson"] = examplePerson;
+                //To fix Identity Issue, Have to use a Try block and turn IDENTITY_INSERT On and then Off when saving
+                //https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties#explicit-values-into-sql-server-identity-columns
+                _contextDB.Database.OpenConnection();
+                try
+                {
+                    _contextDB.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Person ON");
+                    _contextDB.SaveChanges();
+                    _contextDB.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Person OFF");
+                }
+                finally
+                {
+                    _contextDB.Database.CloseConnection();
+                }
+            }
 
+
+            
+
+            //Get current People in DB
+            Person[] peopleList = _contextDB.Person.ToArray();
+
+            //Bringing current People to details page
+            ViewData["peopleArray"] = peopleList;
             return View();
         }
 

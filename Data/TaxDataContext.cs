@@ -15,5 +15,16 @@ namespace TaxWebApp.Data
         {
             Database.EnsureCreated();
         }
+
+        /*
+         * Additional steps needed to create and sync local DB
+         * https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/
+         * 
+         * Run in Package Mangager Console: 
+         *      Add-Migration InitialCreate
+         *      
+         *      Update-Database //If major changes to migration code, call again
+
+         */
     }
 }

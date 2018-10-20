@@ -25,12 +25,11 @@ namespace TaxWebApp
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //Default stuff
             services.Configure<CookiePolicyOptions>(options =>
             {
-                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
@@ -40,13 +39,12 @@ namespace TaxWebApp
             //SQL Server Stuff
             services.AddDbContext<TaxDataContext>(options =>
             {
-                string connectionString = _config.GetConnectionString("LoanerDataContext");
+                string connectionString = _config.GetConnectionString("TaxDataContext");
                 options.UseSqlServer(connectionString);
             });
 
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
