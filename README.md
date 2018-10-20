@@ -19,7 +19,7 @@ Maybe put your name next to something if you are working on it (just an idea)
 **Things that would be nice to have:**
 * Upload Data from an excel file
   * Or at least more Dummy Stuff that is automatically put into the local DB
-* API to acces stuff
+* API to access stuff
 * More stretch goal stuff
 
 
