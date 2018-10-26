@@ -20,8 +20,59 @@ namespace TaxWebApp.Controllers
             _contextDB = context;
         }
 
+        //public async ActionResult Details(int id) //Needs to be return type void
         public ActionResult Details(int id)
         {
+
+
+            //Making temp data to upload to DB
+            Person examplePerson = new Person()
+            {
+                Number = "18000",
+                Name = "Payson Blackwell",
+                New = "",
+                ReferedBy = "Brooke Welch",
+                In = "1/1/2018",
+                Scanned = "1/1/2018",
+                Notes = "2018",
+                Preparer = "Dave",
+                Status = "Waiting on Documents"
+            };
+
+            //Checking to see if the example is already a part of it
+            bool doesExist = false;
+            foreach (Person p in _contextDB.Person.ToArray())
+            {
+                if (p.Number == "18000")
+                {
+                    doesExist = true;
+                    break;
+                }
+            }
+
+            //If Example hasn't been added, then add it and save the change
+            if (doesExist == false)
+            {
+                //Adding the example to the DB
+                _contextDB.Person.Add(examplePerson); //Other way: _context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;
+
+                //Save Changes
+                _contextDB.SaveChanges();
+            }
+
+            //Get current People in DB
+            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
+            Person[] peopleList = _contextDB.Person.ToArray();
+
+            //Bringing current People to details page
+            ViewData["peopleArray"] = peopleList;
+
+            return View();
+
+
+            /*Upload to DB using OLD person properties
+              
+             
             //Making temp data to upload to DB
             Person examplePerson = new Person()
             {
@@ -30,7 +81,7 @@ namespace TaxWebApp.Controllers
                 Id = 1
             };
 
-            
+
             //Checking to see if the example is already a part of it
             bool doesExist = false;
             foreach(Person p in _contextDB.Person.ToArray())
@@ -64,15 +115,19 @@ namespace TaxWebApp.Controllers
             }
 
 
-            
+
 
             //Get current People in DB
+            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
             Person[] peopleList = _contextDB.Person.ToArray();
 
             //Bringing current People to details page
             ViewData["peopleArray"] = peopleList;
+
             return View();
+            */
         }
+    
 
         public ActionResult Index()
         {
