@@ -1,13 +1,12 @@
-﻿@model TaxWebApp.Models.Person
+﻿@model TaxWebApp.Models.Corporate
 @{
-    //get array of Persons
-    Person[] people = (Person[])ViewData["peopleArray"];
+    //get array of Corporates
+    Corporate[] Corporates = (Corporate[])ViewData["corporatesArray"];
 }
 
 <style>
     /*
         Added some css from W3 schools to make the Data legible
-
     */
     .customizeTable {
         font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
@@ -40,48 +39,29 @@
 <table class="customizeTable">
     <!--Now Displaying Data in a Table-->
     <tr>
+        <th>Type</th>
         <th>Number</th>
         <th>Name</th>
         <th>New</th>
-        <th>ReferedBy</th>
         <th>In</th>
-        <th>Scanned</th>
         <th>Notes</th>
-        <th>Preparer</th>
         <th>Status</th>
-
+        <th>Preparer</th>
     </tr>
 
 
-    @foreach (Person p in people)
+    @foreach (Corporate c in Corporates)
     {
         //Display the Array
-    <tr>
-        <td>@p.Number</td>
-        <td>@p.Name</td>
-        <td>@p.New</td>
-        <td>@p.ReferedBy</td>
-        <td>@p.In</td>
-        <td>@p.Scanned</td>
-        <td>@p.Notes</td>
-        <td>@p.Preparer</td>
-        <td>@p.Status</td>
-    </tr>
+        <tr>
+            <td>@c.Type</td>
+            <td>@c.Number</td>
+            <td>@c.Name</td>
+            <td>@c.New</td>
+            <td>@c.In</td>
+            <td>@c.Notes</td>
+            <td>@c.Status</td>
+            <td>@c.Preparer</td>
+        </tr>
     }
 </table>
-
-@*  OLD WAY
-    @foreach (Person p in people)
-    {
-        //Display the Array
-        <h1>
-            Name: @p.FullName()
-            <br />
-            ID: @p.Id
-            <br />
-            <br />
-        </h1>
-    }*@
-
-
-

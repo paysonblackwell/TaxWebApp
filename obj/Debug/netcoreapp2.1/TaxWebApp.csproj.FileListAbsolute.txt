@@ -31,6 +31,7 @@ C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Details.g.cshtml.cs
+<<<<<<< HEAD
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.deps.json
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.runtimeconfig.json
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.runtimeconfig.dev.json
@@ -64,3 +65,6 @@ C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWe
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.dll
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
+=======
+C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Details.g.cshtml.cs
+>>>>>>> 332b3967967b7abf832325320abc2e12e442eca0
