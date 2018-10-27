@@ -10,6 +10,7 @@ namespace TaxWebApp.Migrations
     [DbContext(typeof(TaxDataContext))]
     partial class TaxDataContextModelSnapshot : ModelSnapshot
     {
+        //Now has old Data, I just deleted my DB to work again, not sure how to automatically upload Migration, tried Update-Database command and it didn't help
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618

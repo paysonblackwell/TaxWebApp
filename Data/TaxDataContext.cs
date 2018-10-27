@@ -15,10 +15,12 @@ namespace TaxWebApp.Data
 
         public TaxDataContext(DbContextOptions<TaxDataContext> options) : base(options)
         {
+            //Making ExcelReading Object to run it's constructor
+            //Probably a temperary way to run the example excel file
             ExcelReading test = new ExcelReading();
+
+
             Database.EnsureCreated();
-
-
 
         }
 
@@ -33,7 +35,7 @@ namespace TaxWebApp.Data
          *      Add-Migration InitialCreate
          *      
          *      Update-Database //If major changes to migration code, call again
-         *      //IF Major changes to Model, delete Database and run program again, will recreate it correctly
+         *      //If Major changes to Model, delete Database and run program again, will recreate it correctly
 
          */
     }
