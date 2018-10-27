@@ -7,6 +7,7 @@ namespace TaxWebApp.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            //Now has old Data, I just deleted my DB to work again, not sure how to automatically upload Migration, tried Update-Database command and it didn't help
             migrationBuilder.CreateTable(
                 name: "Person",
                 columns: table => new
