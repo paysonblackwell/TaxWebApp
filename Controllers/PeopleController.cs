@@ -24,6 +24,16 @@ namespace TaxWebApp.Controllers
         public ActionResult Details(int id)
         {
 
+            //Get current People in DB
+            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
+            Person[] peopleList = _contextDB.Person.ToArray();
+
+            //Bringing current People to details page
+            ViewData["peopleArray"] = peopleList;
+
+            return View();
+
+            /*OLD EXAMPLE of making a person and adding them to the DB
 
             //Making temp data to upload to DB
             Person examplePerson = new Person()
@@ -59,20 +69,11 @@ namespace TaxWebApp.Controllers
                 //Save Changes
                 _contextDB.SaveChanges();
             }
+            */
 
-            //Get current People in DB
-            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
-            Person[] peopleList = _contextDB.Person.ToArray();
-
-            //Bringing current People to details page
-            ViewData["peopleArray"] = peopleList;
-
-            return View();
 
 
             /*Upload to DB using OLD person properties
-              
-             
             //Making temp data to upload to DB
             Person examplePerson = new Person()
             {
@@ -113,18 +114,6 @@ namespace TaxWebApp.Controllers
                     _contextDB.Database.CloseConnection();
                 }
             }
-
-
-
-
-            //Get current People in DB
-            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
-            Person[] peopleList = _contextDB.Person.ToArray();
-
-            //Bringing current People to details page
-            ViewData["peopleArray"] = peopleList;
-
-            return View();
             */
         }
     

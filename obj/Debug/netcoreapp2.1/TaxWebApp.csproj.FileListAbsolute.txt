@@ -31,3 +31,4 @@ C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Details.g.cshtml.cs
+C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Details.g.cshtml.cs

@@ -1,0 +1,67 @@
+﻿@model TaxWebApp.Models.Corporate
+@{
+    //get array of Corporates
+    Corporate[] Corporates = (Corporate[])ViewData["corporatesArray"];
+}
+
+<style>
+    /*
+        Added some css from W3 schools to make the Data legible
+    */
+    .customizeTable {
+        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+        .customizeTable td, .customizeTable th {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .customizeTable tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .customizeTable tr:hover {
+            background-color: #ddd;
+        }
+
+        .customizeTable th {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: #4CAF50;
+            color: white;
+        }
+</style>
+
+<table class="customizeTable">
+    <!--Now Displaying Data in a Table-->
+    <tr>
+        <th>Type</th>
+        <th>Number</th>
+        <th>Name</th>
+        <th>New</th>
+        <th>In</th>
+        <th>Notes</th>
+        <th>Status</th>
+        <th>Preparer</th>
+    </tr>
+
+
+    @foreach (Corporate c in Corporates)
+    {
+        //Display the Array
+        <tr>
+            <td>@c.Type</td>
+            <td>@c.Number</td>
+            <td>@c.Name</td>
+            <td>@c.New</td>
+            <td>@c.In</td>
+            <td>@c.Notes</td>
+            <td>@c.Status</td>
+            <td>@c.Preparer</td>
+        </tr>
+    }
+</table>
