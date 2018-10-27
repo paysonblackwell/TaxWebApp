@@ -21,6 +21,8 @@ namespace TaxWebApp.Models
 
         public string Name { get; set; }
 
+        public string New { get; set; }
+
         public string In { get; set; }
 
         public string Notes { get; set; }

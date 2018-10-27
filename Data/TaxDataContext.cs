@@ -13,11 +13,13 @@ namespace TaxWebApp.Data
     {
         public DbSet<Person> Person { get; set; }
 
+        public DbSet<Corporate> Corporate { get; set; }
+
         public TaxDataContext(DbContextOptions<TaxDataContext> options) : base(options)
         {
             //Making ExcelReading Object to run it's constructor
             //Probably a temperary way to run the example excel file
-            ExcelReading test = new ExcelReading();
+            ExcelReading test = new ExcelReading(this);
 
 
             Database.EnsureCreated();
