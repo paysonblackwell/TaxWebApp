@@ -16,11 +16,15 @@ namespace TaxWebApp.Data
         public DbSet<Corporate> Corporate { get; set; }
 
         public TaxDataContext(DbContextOptions<TaxDataContext> options) : base(options)
-        {           
-            Database.EnsureCreated();
+        {
+            //If it is the firt time for DB, add from excel
+            if(Database.EnsureCreated())
+            {
+                //Adding excel sheet to DB
+                ExcelReading test = new ExcelReading(this);
+            }
 
-            //Adding excel sheet to DB
-            ExcelReading test = new ExcelReading(this);
+            
         }
 
 

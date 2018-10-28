@@ -31,8 +31,9 @@ namespace TaxWebApp.Controllers
         public ActionResult AllDetails()
         {
 
-            //Get current Corporates in DB
-            Corporate[] CorporatesList = _contextDB.Corporate.ToArray();
+
+            //Get current Corporates in DB ordered by number, pads the Number with 0's to make sure they are the same length when sorted
+            Corporate[] CorporatesList = _contextDB.Corporate.OrderBy(m => m.Number.PadLeft(_contextDB.Corporate.Count(), '0')).ToArray();
 
             //Bringing current Corporates to details page
             ViewData["corporatesArray"] = CorporatesList;

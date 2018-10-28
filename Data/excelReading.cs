@@ -160,32 +160,24 @@ namespace TaxWebApp.Data
                         //if it was not valid, then don't add
                         if (!outOfValidPeople)
                         {
-                            //Adds person to the DB
-                            _contextDB.Person.Add(currentPerson);
 
-                            //Working on updating, it is being a bit weird and not working
+                            //Check to see if they already exist in the DB                          
+                            bool doesExist = false;
 
-                            
-                            //_contextDB.Person.Update(currentPerson);
-                            //_contextDB.Person.UpdateRange(currentPerson);
-                            //bool alreadyExists = _contextDB.Person.Find(currentPerson.Id) != null ? true : false;
-                            //_contextDB.Entry(currentPerson).State = (alreadyExists ? EntityState.Modified : EntityState.Added);
+                            doesExist = _contextDB.Person.Where(m => m.Number == currentPerson.Number).FirstOrDefault() != null ? true : false;
 
-                            //var currentModel = _contextDB.Person.First(t => t.Id == currentPerson.Id);
-
-                            /*
-                            Person inDB = _contextDB.Person.Find(currentPerson.Id);
-                            bool alreadyExists = inDB != null ? false : true;
-
-                            if(alreadyExists)
+                            if(doesExist == true)
                             {
-                                _contextDB.Entry(inDB).CurrentValues.SetValues(currentPerson);
+                                //check to see if it has newer data the DB
+
+                                //in future or different method, update DB object with newer data from the one in the excel sheet                               
+
                             }
                             else
                             {
+                                //Adds person to the DB since it doesn't exist
                                 _contextDB.Person.Add(currentPerson);
                             }
-                            */
 
                         }
                     }
@@ -275,9 +267,22 @@ namespace TaxWebApp.Data
                         //if it was not valid, then don't add
                         if (!outOfValidCorporate)
                         {
-                            //Checking to see if the person is already a part of it
-                            //It will throw exception if it is already in the DB, in that case update the person instead
-                             _contextDB.Corporate.Add(currentCorporate);
+                            //Check to see if they already exist in the DB                          
+                            bool doesExist = false;
+                            doesExist = _contextDB.Corporate.Where(m => m.Number == currentCorporate.Number).FirstOrDefault() != null ? true : false;
+
+                            if (doesExist == true)
+                            {
+                                //check to see if it has newer data the DB
+
+                                //in future or different method, update DB object with newer data from the one in the excel sheet
+
+                            }
+                            else
+                            {
+                                //Adds Corporate to the DB since it doesn't exist
+                                _contextDB.Corporate.Add(currentCorporate);
+                            }                            
                         }
                     }
                     else

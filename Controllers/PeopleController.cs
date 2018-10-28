@@ -37,9 +37,11 @@ namespace TaxWebApp.Controllers
         public ActionResult AllDetails()
         {
 
-            //Get current People in DB
+
             //var peopleList = await _contextDB.Person.ToListAsync(); //async version
-            Person[] peopleList = _contextDB.Person.ToArray();
+
+            //Get current People in DB, sorted by Number, pads the Number with 0's to make sure they are the same length when sorted
+            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
             
 
             //Bringing current People to details page
