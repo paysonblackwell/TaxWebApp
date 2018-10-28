@@ -15,6 +15,8 @@ namespace TaxWebApp.Models
 
         //All are type string for right now
 
+        public static string LastNumber { get; set; }
+
         public string Type { get; set; }
 
         public string Number { get; set; }

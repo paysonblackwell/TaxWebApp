@@ -105,7 +105,7 @@ namespace TaxWebApp.Data
                                         break;
                                     case 2:
                                         //if it is null, then return assign an empty string instead
-                                        currentPerson.Number = (worksheet.Cells[row, col].Value)  == null ? "" : (worksheet.Cells[row, col].Value).ToString();
+                                        currentPerson.Number = (worksheet.Cells[row, col].Value)  == null ? "" : (worksheet.Cells[row, col].Value).ToString();                                       
                                         break;
                                     case 3:
                                         currentPerson.Name = (worksheet.Cells[row, col].Value) == null ? "" : (worksheet.Cells[row, col].Value).ToString();
@@ -175,6 +175,20 @@ namespace TaxWebApp.Data
                             }
                             else
                             {
+                                //Convert to int and the see if it is the last number value
+                                int currentNumber;
+                                Int32.TryParse(currentPerson.Number, out currentNumber);
+
+                                int lastNumber;
+                                Int32.TryParse(Person.LastNumber, out lastNumber);
+
+                                if (currentNumber > lastNumber)
+                                {
+                                    Person.LastNumber = currentPerson.Number;
+                                }
+
+
+
                                 //Adds person to the DB since it doesn't exist
                                 _contextDB.Person.Add(currentPerson);
                             }
@@ -280,6 +294,20 @@ namespace TaxWebApp.Data
                             }
                             else
                             {
+
+                                //Convert to int and the see if it is the last number value
+                                int currentNumber;
+                                Int32.TryParse(currentCorporate.Number, out currentNumber);
+
+                                int lastNumber;
+                                Int32.TryParse(Corporate.LastNumber, out lastNumber);
+
+                                if (currentNumber > lastNumber)
+                                {
+                                    Corporate.LastNumber = currentCorporate.Number;
+                                }
+
+
                                 //Adds Corporate to the DB since it doesn't exist
                                 _contextDB.Corporate.Add(currentCorporate);
                             }                            

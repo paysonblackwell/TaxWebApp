@@ -15,6 +15,8 @@ namespace TaxWebApp.Models
         //All Columns from Personals  excel sheet
         //All are type string for right now
 
+        public static string LastNumber { get; set; }
+
         public string Number { get; set;}
 
         public string Name { get; set; }

@@ -162,6 +162,17 @@ namespace TaxWebApp.Controllers
         {
             try
             {
+
+                //Increment the last Number entered by 1
+                int lastNumber;
+                Int32.TryParse(Person.LastNumber, out lastNumber);
+                lastNumber++;
+
+                Person.LastNumber = lastNumber.ToString();
+
+                newPerson.Number = lastNumber.ToString();
+
+
                 //Insert new person into database               
                 _contextDB.Add(newPerson);
                 _contextDB.SaveChanges();

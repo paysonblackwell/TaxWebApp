@@ -54,6 +54,16 @@ namespace TaxWebApp.Controllers
         {
             try
             {
+
+                //Increment the last Number entered by 1
+                int lastNumber;
+                Int32.TryParse(Corporate.LastNumber, out lastNumber);
+                lastNumber++;
+
+                Corporate.LastNumber = lastNumber.ToString();
+
+                newCorporation.Number = lastNumber.ToString();
+
                 // insert logic for adding a new corporate tax
                 _contextDB.Add(newCorporation);
                 _contextDB.SaveChanges();
