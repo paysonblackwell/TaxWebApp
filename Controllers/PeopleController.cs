@@ -20,16 +20,31 @@ namespace TaxWebApp.Controllers
             _contextDB = context;
         }
 
+      
+
+        public ActionResult Details(long id)
+        {
+            //get person at with the given id
+            Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+
+            //Bringing current Person to details page
+            ViewData["personById"] = person;
+
+            return View();
+        }
+
         //public async ActionResult Details(int id) //Needs to be return type void
-        public ActionResult Details(int id)
+        public ActionResult AllDetails()
         {
 
             //Get current People in DB
             //var peopleList = await _contextDB.Person.ToListAsync(); //async version
             Person[] peopleList = _contextDB.Person.ToArray();
+            
 
             //Bringing current People to details page
-            ViewData["peopleArray"] = peopleList;
+             ViewData["peopleArray"] = peopleList;
+      
 
             return View();
 
@@ -141,13 +156,16 @@ namespace TaxWebApp.Controllers
         // POST: Person/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Person newPerson)
         {
             try
             {
-                // TODO: Add insert logic here
+                //Insert new person into database               
+                _contextDB.Add(newPerson);
+                _contextDB.SaveChanges();
 
-                return RedirectToAction(nameof(Index));
+                //return to the details page of the person we just entered
+                return RedirectToAction(nameof(Details), new { id = newPerson.Id });
             }
             catch
             {
@@ -156,28 +174,52 @@ namespace TaxWebApp.Controllers
         }
 
         // GET: Person/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(long id)
         {
+            //retrieve the person with the given is 
+            Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+
+            //Bringing current Person to details page to edit
+            ViewData["personToEdit"] = person;
+
             return View();
         }
 
         // POST: Person/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(long id, Person editedPerson)
         {
+            if (editedPerson == null)
+            {
+                throw new ArgumentNullException(nameof(editedPerson));
+            }
+
             try
             {
-                // TODO: Add update logic here
+                // logic for updating an entry in the database
+                Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+                person.Number = editedPerson.Number;
+                person.Name = editedPerson.Name;
+                person.New = editedPerson.New;
+                person.ReferedBy = editedPerson.ReferedBy;
+                person.In = editedPerson.In;
+                person.Scanned = editedPerson.Scanned;
+                person.Notes = editedPerson.Notes;
+                person.Preparer = editedPerson.Preparer;
+                person.Status = editedPerson.Status;
+                _contextDB.SaveChanges();
 
-                return RedirectToAction(nameof(Index));
+                //return the details of the edited person 
+                return RedirectToAction(nameof(Details), new { id=id});
             }
             catch
             {
                 return View();
             }
         }
-
+        
+        /*
         // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
@@ -200,5 +242,6 @@ namespace TaxWebApp.Controllers
                 return View();
             }
         }
+        */
     }
 }

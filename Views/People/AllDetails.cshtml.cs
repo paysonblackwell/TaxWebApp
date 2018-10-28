@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace TaxWebApp.Views.People
 {
-    public class DetailsModel : PageModel
+    public class AllDetailsModel : PageModel
     {
         public void OnGet()
         {

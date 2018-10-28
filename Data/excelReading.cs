@@ -31,7 +31,7 @@ namespace TaxWebApp.Data
             //Need the DB context to upload stuff, called from TaxDataContext
 
             //Takes the name of the file and sheet name
-            uploadFile("Tax_List_Sample.xlsx", "Personals "); //there is an annoying space in the Excel sheet's name
+            uploadFile("Tax_List_Sample.xlsx", "Personals"); //FIXED: there is an annoying space in the Excel sheet's name
 
             uploadFile("Tax_List_Sample.xlsx", "Corporate");
 
@@ -76,7 +76,7 @@ namespace TaxWebApp.Data
             }
 
             //Check if uploading to Personals 
-            if (worksheet.Name == "Personals ")
+            if (worksheet.Name == "Personals")
             {
                 bool outOfValidPeople = false;
 
