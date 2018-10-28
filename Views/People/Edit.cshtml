@@ -1,0 +1,76 @@
+﻿@model TaxWebApp.Models.Person
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person person = (Person)ViewData["personToEdit"];
+}
+
+<h2>Edit</h2>
+
+<h4>Personal Tax</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"> </div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Number" class="control-label"></label>
+                <input asp-for="Number" class="form-control" value="@person.Number"/>
+                <span asp-validation-for="Number" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" value="@person.Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="New" class="control-label"></label>
+                <input asp-for="New" class="form-control" value="@person.New" />
+                <span asp-validation-for="New" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReferedBy" class="control-label"></label>
+                <input asp-for="ReferedBy" class="form-control" value="@person.ReferedBy" />
+                <span asp-validation-for="ReferedBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="In" class="control-label"></label>
+                <input asp-for="In" class="form-control" value="@person.In" />
+                <span asp-validation-for="In" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Scanned" class="control-label"></label>
+                <input asp-for="Scanned" class="form-control" value="@person.Scanned" />
+                <span asp-validation-for="Scanned" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" value="@person.Notes" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preparer" class="control-label"></label>
+                <input asp-for="Preparer" class="form-control" value="@person.Preparer" />
+                <span asp-validation-for="Preparer" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Status" class="control-label"></label>
+                <input asp-for="Status" class="form-control" value="@person.Status" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+@*
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+*@
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

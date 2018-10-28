@@ -1,87 +1,74 @@
 ﻿@model TaxWebApp.Models.Person
+
 @{
-    //get array of Persons
-    Person[] people = (Person[])ViewData["peopleArray"];
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person person = (Person)ViewData["personById"];
 }
 
-<style>
-    /*
-        Added some css from W3 schools to make the Data legible
+<h2>Details</h2>
 
-    */
-    .customizeTable {
-        font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
-        border-collapse: collapse;
-        width: 100%;
-    }
-
-        .customizeTable td, .customizeTable th {
-            border: 1px solid #ddd;
-            padding: 8px;
-        }
-
-        .customizeTable tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        .customizeTable tr:hover {
-            background-color: #ddd;
-        }
-
-        .customizeTable th {
-            padding-top: 12px;
-            padding-bottom: 12px;
-            text-align: left;
-            background-color: #4CAF50;
-            color: white;
-        }
-</style>
-
-<table class="customizeTable">
-    <!--Now Displaying Data in a Table-->
-    <tr>
-        <th>Number</th>
-        <th>Name</th>
-        <th>New</th>
-        <th>ReferedBy</th>
-        <th>In</th>
-        <th>Scanned</th>
-        <th>Notes</th>
-        <th>Preparer</th>
-        <th>Status</th>
-
-    </tr>
-
-
-    @foreach (Person p in people)
-    {
-        //Display the Array
-    <tr>
-        <td>@p.Number</td>
-        <td>@p.Name</td>
-        <td>@p.New</td>
-        <td>@p.ReferedBy</td>
-        <td>@p.In</td>
-        <td>@p.Scanned</td>
-        <td>@p.Notes</td>
-        <td>@p.Preparer</td>
-        <td>@p.Status</td>
-    </tr>
-    }
-</table>
-
-@*  OLD WAY
-    @foreach (Person p in people)
-    {
-        //Display the Array
-        <h1>
-            Name: @p.FullName()
-            <br />
-            ID: @p.Id
-            <br />
-            <br />
-        </h1>
-    }*@
-
-
-
+<div>
+    <h4>Personal Tax</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.New)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.New)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.ReferedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.In)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.In)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scanned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Scanned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Preparer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Preparer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Status)
+        </dd>
+    </dl>
+</div>
+@*<div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
