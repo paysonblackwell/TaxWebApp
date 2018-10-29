@@ -1,20 +1,74 @@
 ﻿@model TaxWebApp.Models.Person
+
 @{
-    //get array of Persons
-    Person[] people = (Person[])ViewData["peopleArray"];
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person person = (Person)ViewData["personById"];
 }
 
-@foreach (Person p in people)
-{
-    //Display the Array
-    <h1>
-        Name: @p.FullName()
-        <br />
-        ID: @p.Id
-        <br />
-        <br />
-    </h1>
-}
+<h2>Details</h2>
 
-
-
+<div>
+    <h4>Personal Tax</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Number)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Number)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.New)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.New)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReferedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.ReferedBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.In)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.In)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Scanned)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Scanned)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Notes)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Notes)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Preparer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Preparer)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => person.Status)
+        </dd>
+    </dl>
+</div>
+@*<div>
+        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+        <a asp-action="Index">Back to List</a>
+    </div>*@
