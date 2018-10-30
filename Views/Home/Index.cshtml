@@ -1,16 +1,66 @@
-﻿@{
+﻿@model TaxWebApp.Models.Person
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person[] person = (Person[])ViewData["peopleArray"];
 }
 
+<style>
+    .tab-content tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-<h1>This is in the body of the Home Page</h1>
+</style>
+
+<h1>Today:   Monday, October 29, 2018 </h1>
+
 
 <!-- Link to my example Page-->
-<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
+@*<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
 
 <br />
 
-<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?
+<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
+
+
+<h2>Customers:</h2>
+
+<div>
+    <table class="tab-content" style="width:100%">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Number)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.New)</th>
+            @*<th>@Html.DisplayNameFor(model => model.ReferedBy)</th>*@
+            @*<th>@Html.DisplayNameFor(model => model.In)</th>*@
+            @*<th>@Html.DisplayNameFor(model => model.Scanned)</th>*@
+            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+            <th>@Html.DisplayNameFor(model => model.Preparer)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th></th>
+
+        </tr>
+        @foreach (Person p in person)
+        {
+            <tr>
+                <td>@p.Number</td>
+                <td>@p.Name</td>
+                <td>@p.New</td>
+                @*<th>@p.ReferedBy</th>*@
+                @*<th>@p.In</th>*@
+                @*<th>@p.Scanned</th>*@
+                <th>@p.Notes</th>
+                <th>@p.Preparer</th>
+                <th>@p.Status</th>
+                <th><a href="/People/Details/@p.Id">Details</a></th>
+
+
+            </tr>
+        }
+    </table>
+</div>
+
+
 
 <!-- Default Index Page Stuff
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">

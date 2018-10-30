@@ -12,24 +12,36 @@ using Microsoft.AspNetCore.Mvc;
 using TaxWebApp.Models;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
+using TaxWebApp.Data;
 
 namespace TaxWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        
 
-        
-
-
+        //DB STUFF
+        private readonly TaxDataContext _contextDB;
+        public HomeController(TaxDataContext context)
+        {
+            _contextDB = context;
+        }
 
 
         public IActionResult Index()
         {
+            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
+            //Bringing current People to details page
+            ViewData["peopleArray"] = peopleList;
             return View();
         }
 
-
+        public IActionResult Display()
+        {
+            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
+            //Bringing current People to details page
+            ViewData["peopleArray"] = peopleList;
+            return View();
+        }
 
 
 

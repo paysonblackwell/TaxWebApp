@@ -1,0 +1,51 @@
+﻿@model TaxWebApp.Models.Person
+
+@{
+    ViewData["Title"] = "Display";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person[] person = (Person[])ViewData["peopleArray"];
+}
+
+<h2>Customers:</h2>
+
+<div>
+    <table class="" style="width:100%">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Number)</th>
+            <th>@Html.DisplayNameFor(model => model.Name)</th>
+            <th>@Html.DisplayNameFor(model => model.New)</th>
+            <th>@Html.DisplayNameFor(model => model.ReferedBy)</th>
+            <th>@Html.DisplayNameFor(model => model.In)</th>
+            <th>@Html.DisplayNameFor(model => model.Scanned)</th>
+            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+            <th>@Html.DisplayNameFor(model => model.Preparer)</th>
+            <th>@Html.DisplayNameFor(model => model.Status)</th>
+            <th></th>
+
+        </tr>
+        @foreach (Person p in person)
+        {
+        <tr>
+            <td>@p.Number</td>
+            <td>@p.Name</td>
+            <td>@p.New</td>
+            <th>@p.ReferedBy</th>
+            <th>@p.In</th>
+            <th>@p.Scanned</th>
+            <th>@p.Notes</th>
+            <th>@p.Preparer</th>
+            <th>@p.Status</th>
+            <th><a href="/People/Details/@p.Id">Details</a></th> 
+        
+
+        </tr>
+        }
+    </table>
+</div>
+  
+  
+    
+@*<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>*@
