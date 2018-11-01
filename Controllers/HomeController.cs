@@ -28,7 +28,7 @@ namespace TaxWebApp.Controllers
         }
 
 
-        public IActionResult Index(string sortOrder)
+        public IActionResult Index(string sortOrder, string searchString)
         {
             //set-up datetime
             DateTime dt = DateTime.Now;
@@ -48,30 +48,36 @@ namespace TaxWebApp.Controllers
             ViewBag.PreparerSortParm = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
             var person = from p in _contextDB.Person
                            select p;
-                switch (sortOrder)
-                {
-                    case "Name":
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                person = person.Where(p => p.Name.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
                     person = person.OrderBy(p => p.Name);
-                        break;
-                    case "Name_desc":
+                    break;
+                case "Name_desc":
                     person = person.OrderByDescending(p => p.Name);
-                        break;
-                    case "Status":
+                    break;
+                case "Status":
                     person = person.OrderBy(p => p.Status);
-                        break;
-                    case "Status_desc":
+                    break;
+                case "Status_desc":
                     person = person.OrderByDescending(p => p.Status);
-                        break;
-                    case "Preparer":
+                    break;
+                case "Preparer":
                     person = person.OrderBy(p => p.Preparer);
-                        break;
-                    case "Preparer_desc":
+                    break;
+                case "Preparer_desc":
                     person = person.OrderByDescending(p => p.Preparer);
-                        break;
-                    default:
+                    break;
+                default:
                     person = person.OrderBy(p => p.Number);
-                        break;
-                }
+                    break;
+            }
             
             return View(person.ToList());
         }

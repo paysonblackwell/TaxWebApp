@@ -24,6 +24,13 @@
 <p>
     <a href="/People/Create/">Create New</a>
 </p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
 <div>
     <table class="tab-content" style="width:70%">
         <tr>
