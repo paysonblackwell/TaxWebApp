@@ -133,13 +133,19 @@ namespace TaxWebApp.Controllers
             }
             */
         }
-    
 
-        public ActionResult Index()
+        //***********************
+        //public ActionResult Index()
+        //{
+
+        //    return View();
+        //}
+
+        public ViewResult Index()
         {
-
-            return View();
+            return View(_contextDB.Person.ToList());
         }
+
 
 
 
