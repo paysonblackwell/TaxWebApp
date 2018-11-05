@@ -6,6 +6,8 @@
     Person person = (Person)ViewData["personById"];
 }
 
+
+
 <h2>Details</h2>
 
 <div>
@@ -68,7 +70,8 @@
         </dd>
     </dl>
 </div>
-@*<div>
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-        <a asp-action="Index">Back to List</a>
-    </div>*@
+
+<div>
+    <a asp-action="Edit" asp-route-id="@person.Id">Edit</a> |
+    <a asp-controller="Home" asp-action="Index">Back to List</a>
+</div>
