@@ -1,24 +1,20 @@
-﻿@model IEnumerable<TaxWebApp.Models.Person>
+﻿@model PagedList.IPagedList<TaxWebApp.Models.Person>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
 @{
-    ViewData["Title"] = "Home Page";
+    //ViewData["Title"] = "Home Page";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    Person[] person = (Person[])ViewData["peopleArray"];
+    ViewBag.Title = "Peole";
 }
 
 <style>
-    .tab-content tr:nth-child(even) {
+    .table tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-
 </style>
 
 <h1>Today is: @ViewData["toDayDate"] </h1>
-
-<!-- Link to my example Page-->
-@*<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
-<br />
-<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
-
 
 <h2>Customers:</h2>
 <p>
@@ -27,81 +23,63 @@
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("SearchString")
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
-<div>
-    <table class="tab-content" style="width:70%">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Number)</th>
-            <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
-            <th>@Html.DisplayNameFor(model => model.New)</th>
-            @*<th>@Html.DisplayNameFor(model => model.ReferedBy)</th>*@
-            @*<th>@Html.DisplayNameFor(model => model.In)</th>*@
-            @*<th>@Html.DisplayNameFor(model => model.Scanned)</th>*@
-            <th>@Html.DisplayNameFor(model => model.Notes)</th>
-            <th>@Html.ActionLink("Preparer", "Index", new { sortOrder = ViewBag.PreparerSortParm })</th>
-            <th>@Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })</th>
-            <th></th>
+    <div>
+        <table class="table" style="width:70%">
+            <tr>
+                <th>Number</th>
+                <th>
+                    @Html.ActionLink("Name", "Index",
+               new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>Notes</th>
+                <th>
+                    @Html.ActionLink("Preparer", "Index",
+               new { sortOrder = ViewBag.PreparerSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th>
+                    @Html.ActionLink("Status", "Index",
+               new { sortOrder = ViewBag.StatusSortParm, currentFilter = ViewBag.CurrentFilter })
+                </th>
+                <th></th>
+            </tr>
 
-        </tr>
-        @*OLD WAY TO DISPLAY CONTENT*@
-        @*@foreach (Person p in person)
-        {
-        <tr>
-            <td>@p.Number</td>
-            <td>@p.Name</td>
-            <td>@p.New</td>*@
-        @*<th>@p.ReferedBy</th>*@
-        @*<th>@p.In</th>*@
-        @*<th>@p.Scanned</th>*@
-        @*<th>@p.Notes</th>
-            <th>@p.Preparer</th>
-            <th>@p.Status</th>
-            <th><a href="/People/Details/@p.Id">Details</a></th>
-            <th><a href="/People/Edit/@p.Id">Edit</a></th>
-        </tr>
-        }*@
-        @foreach (var item in Model)
-        {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.New)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ReferedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.In)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Scanned)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preparer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a href="/People/Details/@item.Id">Details</a> |
-                <a href="/People/Edit/@item.Id">Edit</a> 
-                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-            </td>
-        </tr>
-        }
-    </table>
-</div>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Number)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Notes)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Preparer)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Status)
+                    </td>
+                    <td>
+                        <a href="/People/Details/@item.Id">Details</a> |
+                        <a href="/People/Edit/@item.Id">Edit</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <br />
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        
+        @*This Pager does not work. Neads to find out whats wrong!!!*@
+        @* @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }));*@
+      
+    </div>      
+
 
 
 
