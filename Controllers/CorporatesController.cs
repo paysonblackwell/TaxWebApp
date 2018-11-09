@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TaxWebApp.Data;
@@ -44,6 +46,13 @@ namespace TaxWebApp.Controllers
         // GET: Person/Create
         public ActionResult Create()
         {
+            DateTime dt = DateTime.Now;
+            String date = dt.ToString("MM/dd/yyyy", DateTimeFormatInfo.InvariantInfo);
+
+            //Bringing date to the Home page
+            ViewData["toDayDate"] = date;
+
+
             return View();
         }
 
@@ -116,6 +125,47 @@ namespace TaxWebApp.Controllers
 
                 // returning the details page of the edited corporate tax
                 return RedirectToAction(nameof(Details), new { id = id });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+        /* */
+        // GET: Person/Delete/5
+        public ActionResult Delete(int id)
+        {
+            //retrieve the person with the given id to be removed 
+            Corporate corporate = _contextDB.Corporate.Where(m => m.Id == id).FirstOrDefault();
+           
+            //Bringing current corparation to details page
+            ViewData["corporateToDelete"] = corporate;
+
+            return View();
+        }
+
+        // POST: Person/Delete/5
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id, IFormCollection collection)
+        {
+            try
+            {
+                //retrieve the person with the given id to be removed 
+                Corporate corporate = _contextDB.Corporate.Where(m => m.Id == id).FirstOrDefault();
+
+                //remove that person
+                _contextDB.Corporate.Remove(corporate);
+                _contextDB.SaveChanges();
+
+
+                //Bringing current Person to details page to edit
+               // ViewData["corporateToDelete"] = person;
+
+
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {

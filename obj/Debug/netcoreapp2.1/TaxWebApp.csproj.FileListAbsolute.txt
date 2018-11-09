@@ -40,3 +40,5 @@ C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWe
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csprojAssemblyReference.cache
+C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Delete.g.cshtml.cs
+C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Delete.g.cshtml.cs
