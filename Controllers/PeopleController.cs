@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using TaxWebApp.Data;
@@ -153,6 +154,12 @@ namespace TaxWebApp.Controllers
         // GET: Person/Create
         public ActionResult Create()
         {
+            DateTime dt = DateTime.Now;
+            String date = dt.ToString("MM/dd/yyyy", DateTimeFormatInfo.InvariantInfo);
+
+            //Bringing date to the Home page
+            ViewData["toDayDate"] = date;
+
             return View();
         }
 
@@ -231,11 +238,17 @@ namespace TaxWebApp.Controllers
                 return View();
             }
         }
-        
-        /*
+
+        /* */
         // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
+            //get person at with the given id
+            Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+
+            //Bringing current Person to details page
+            ViewData["personById"] = person;
+
             return View();
         }
 
@@ -246,15 +259,26 @@ namespace TaxWebApp.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
+                //retrieve the person with the given id to be removed 
+                Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
 
-                return RedirectToAction(nameof(Index));
+                //remove that person
+                _contextDB.Person.Remove(person);
+                _contextDB.SaveChanges();
+
+
+                //Bringing current Person to details page to edit
+                ViewData["personToEdit"] = person;
+
+
+
+                return RedirectToAction("Index", "Home");
             }
             catch
             {
                 return View();
             }
         }
-        */
+       
     }
 }
