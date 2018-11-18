@@ -24,7 +24,7 @@ using TaxWebApp.Models;
 #line default
 #line hidden
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"90be452d0c08939ce8b86d096fef6e65025fcba0", @"/Views/People/AllDetails.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"89c6a582af24dd9fcf635f671f82fb8c2104068b", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"62caf2104da4c237e370046ec6b798b2dec09c80", @"/Views/_ViewImports.cshtml")]
     public class Views_People_AllDetails : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<TaxWebApp.Models.Person>
     {
         #pragma warning disable 1998

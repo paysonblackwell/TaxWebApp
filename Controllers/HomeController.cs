@@ -15,6 +15,7 @@ using OfficeOpenXml.Table;
 using TaxWebApp.Data;
 using System.Globalization;
 using PagedList;
+using Microsoft.EntityFrameworkCore;
 
 namespace TaxWebApp.Controllers
 {
@@ -29,7 +30,7 @@ namespace TaxWebApp.Controllers
         }
 
 
-        public ViewResult Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             //set-up datetime
             DateTime dt = DateTime.Now;
@@ -38,7 +39,8 @@ namespace TaxWebApp.Controllers
 
             //Bringing date to the Home page
             ViewData["toDayDate"] = date;
-           
+
+
 
             if (searchString != null)
             {
@@ -48,15 +50,15 @@ namespace TaxWebApp.Controllers
             {
                 searchString = currentFilter;
             }
-            ViewBag.CurrentFilter = searchString;
+            ViewData["CurrentFilter"] = searchString;
 
             //Sorting
-            ViewBag.CurrentSort = sortOrder;
-            ViewBag.NameSortParm = sortOrder == "Name" ? "Name_desc" : "Name";
-            ViewBag.StatusSortParm = sortOrder == "Status" ? "Status_desc" : "Status";
-            ViewBag.PreparerSortParm = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
+            ViewData["StatusSortParm"] = sortOrder == "Status" ? "Status_desc" : "Status";
+            ViewData["PreparerSortParm"] = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
             var persons = from p in _contextDB.Person
-                           select p;
+                          select p;
             if (!String.IsNullOrEmpty(searchString))
             {
                 persons = persons.Where(p => p.Name.Contains(searchString));
@@ -87,12 +89,12 @@ namespace TaxWebApp.Controllers
                     persons = persons.OrderBy(p => p.Number);
                     break;
             }
-            
+
             //Number of items on on page
-            int pageSize = 15;
-            int pageNumber = (page ?? 1);            
-        
-            return View(persons.ToPagedList(pageNumber, pageSize));
+            int pageSize = 30;
+            int pageNumber = (page ?? 1);
+
+            return View(await PaginatedList<Person>.CreateAsync(persons.AsNoTracking(), page ?? 1, pageSize));
         }
 
 
