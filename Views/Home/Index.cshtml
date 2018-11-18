@@ -1,16 +1,109 @@
-﻿@{
+﻿@model IEnumerable<TaxWebApp.Models.Person>
+@{
     ViewData["Title"] = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    Person[] person = (Person[])ViewData["peopleArray"];
 }
 
+<style>
+    .tab-content tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
 
-<h1>This is in the body of the Home Page</h1>
+</style>
+
+<h1>Today is: @ViewData["toDayDate"] </h1>
 
 <!-- Link to my example Page-->
-<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
-
+@*<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
 <br />
+<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
 
-<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?
+
+<h2>Customers:</h2>
+<p>
+    <a href="/People/Create/">Create New</a>
+</p>
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString")
+        <input type="submit" value="Search" />
+    </p>
+}
+<div>
+    <table class="tab-content" style="width:70%">
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.Number)</th>
+            <th>@Html.ActionLink("Name", "Index", new { sortOrder = ViewBag.NameSortParm })</th>
+            <th>@Html.DisplayNameFor(model => model.New)</th>
+            @*<th>@Html.DisplayNameFor(model => model.ReferedBy)</th>*@
+            @*<th>@Html.DisplayNameFor(model => model.In)</th>*@
+            @*<th>@Html.DisplayNameFor(model => model.Scanned)</th>*@
+            <th>@Html.DisplayNameFor(model => model.Notes)</th>
+            <th>@Html.ActionLink("Preparer", "Index", new { sortOrder = ViewBag.PreparerSortParm })</th>
+            <th>@Html.ActionLink("Status", "Index", new { sortOrder = ViewBag.StatusSortParm })</th>
+            <th></th>
+
+        </tr>
+        @*OLD WAY TO DISPLAY CONTENT*@
+        @*@foreach (Person p in person)
+        {
+        <tr>
+            <td>@p.Number</td>
+            <td>@p.Name</td>
+            <td>@p.New</td>*@
+        @*<th>@p.ReferedBy</th>*@
+        @*<th>@p.In</th>*@
+        @*<th>@p.Scanned</th>*@
+        @*<th>@p.Notes</th>
+            <th>@p.Preparer</th>
+            <th>@p.Status</th>
+            <th><a href="/People/Details/@p.Id">Details</a></th>
+            <th><a href="/People/Edit/@p.Id">Edit</a></th>
+        </tr>
+        }*@
+        @foreach (var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New)
+            </td>
+            @*<td>
+                @Html.DisplayFor(modelItem => item.ReferedBy)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.In)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Scanned)
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preparer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a href="/People/Details/@item.Id">Details</a> |
+                <a href="/People/Edit/@item.Id">Edit</a> 
+                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+            </td>
+        </tr>
+        }
+    </table>
+</div>
+
+
 
 <!-- Default Index Page Stuff
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">

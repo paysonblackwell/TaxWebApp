@@ -12,28 +12,83 @@ using Microsoft.AspNetCore.Mvc;
 using TaxWebApp.Models;
 using OfficeOpenXml;
 using OfficeOpenXml.Table;
+using TaxWebApp.Data;
+using System.Globalization;
 
 namespace TaxWebApp.Controllers
 {
     public class HomeController : Controller
     {
-        
 
-        
-
-
-
-
-        public IActionResult Index()
+        //DB STUFF
+        private readonly TaxDataContext _contextDB;
+        public HomeController(TaxDataContext context)
         {
-            return View();
+            _contextDB = context;
         }
 
 
+        public IActionResult Index(string sortOrder, string searchString)
+        {
+            //set-up datetime
+            DateTime dt = DateTime.Now;
+            String date;
+            date = dt.ToString("D", DateTimeFormatInfo.InvariantInfo);
+
+            //Bringing date to the Home page
+            ViewData["toDayDate"] = date;
+
+            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
+            //Bringing current People to the Home page
+            ViewData["peopleArray"] = peopleList;
+
+            //Sorting
+            ViewBag.NameSortParm = sortOrder == "Name" ? "Name_desc" : "Name";
+            ViewBag.StatusSortParm = sortOrder == "Status" ? "Status_desc" : "Status";
+            ViewBag.PreparerSortParm = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
+            var person = from p in _contextDB.Person
+                           select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                person = person.Where(p => p.Name.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    person = person.OrderBy(p => p.Name);
+                    break;
+                case "Name_desc":
+                    person = person.OrderByDescending(p => p.Name);
+                    break;
+                case "Status":
+                    person = person.OrderBy(p => p.Status);
+                    break;
+                case "Status_desc":
+                    person = person.OrderByDescending(p => p.Status);
+                    break;
+                case "Preparer":
+                    person = person.OrderBy(p => p.Preparer);
+                    break;
+                case "Preparer_desc":
+                    person = person.OrderByDescending(p => p.Preparer);
+                    break;
+                default:
+                    person = person.OrderBy(p => p.Number);
+                    break;
+            }
+            
+            return View(person.ToList());
+        }
 
 
-
-
+        public IActionResult Display()
+        {
+            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
+            ViewData["peopleArray"] = peopleList;
+            return View();
+        }
 
 
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TaxWebApp.Data;
 
 namespace TaxWebApp.Models
 {
@@ -15,6 +16,7 @@ namespace TaxWebApp.Models
 
         //All are type string for right now
 
+        //only used for excel sheet
         public static string LastNumber { get; set; }
 
         public string Type { get; set; }
@@ -33,10 +35,25 @@ namespace TaxWebApp.Models
 
         public string Preparer { get; set; }
 
+        public static string getNextNumber(TaxDataContext contextDB)
+        {
 
+            //Get current People in DB, sorted by Number, pads the Number with 0's to make sure they are the same length when sorted
+            Corporate[] corporateList = contextDB.Corporate.OrderBy(m => m.Number.PadLeft(contextDB.Corporate.Count(), '0')).ToArray();
 
+            //Gets the last number that was used, doesn't check for missing numbers that were deleted by user
+            string currentNumber = corporateList[(corporateList.Length - 1)].Number;
 
+            //Increment the last Number entered by 1
+            int lastNumber;
+            Int32.TryParse(currentNumber, out lastNumber);
+            lastNumber++;
 
+            //updating the LastNumber, don't know why
+            Corporate.LastNumber = lastNumber.ToString();
 
+            //return next number
+            return lastNumber.ToString();
+        }
     }
 }
