@@ -41,14 +41,6 @@ C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWe
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csprojAssemblyReference.cache
 <<<<<<< HEAD
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\AllDetails.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Details.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Edit.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Create.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\AllDetails.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Details.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Edit.g.cshtml.cs
-C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Create.g.cshtml.cs
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.deps.json
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.runtimeconfig.json
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Debug\netcoreapp2.1\TaxWebApp.runtimeconfig.dev.json
@@ -137,3 +129,5 @@ C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Delete.g.cshtml.cs
 C:\Users\grace\OneDrive\Documents\GitHub\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Delete.g.cshtml.cs
 >>>>>>> Grace
+C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Delete.g.cshtml.cs
+C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\People\Delete.g.cshtml.cs
