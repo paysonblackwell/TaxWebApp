@@ -147,11 +147,6 @@ namespace TaxWebApp.Controllers
             return View(_contextDB.Person.ToList());
         }
 
-
-
-
-
-
         // DEFAULT STUFF
         /*************************************************************************/
         /*************************************************************************/
@@ -176,14 +171,13 @@ namespace TaxWebApp.Controllers
             try
             {
 
-                //Increment the last Number entered by 1
-                int lastNumber;
-                Int32.TryParse(Person.LastNumber, out lastNumber);
-                lastNumber++;
+                //Need to check to make sure it is a valid number and it isn't already taken
 
-                Person.LastNumber = lastNumber.ToString();
+                //Get the next Number
+                string lastNum = Person.getNextNumber(_contextDB); ;
+                Person.LastNumber = lastNum;
 
-                newPerson.Number = lastNumber.ToString();
+                newPerson.Number = lastNum;
 
 
                 //Insert new person into database               
