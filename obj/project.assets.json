@@ -12744,23 +12744,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dmytr\\.nuget\\packages\\": {},
+    "C:\\Users\\cutte\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dmytr\\Source\\Repos\\TaxWebApp\\TaxWebApp.csproj",
+      "projectUniqueName": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\TaxWebApp.csproj",
       "projectName": "TaxWebApp",
-      "projectPath": "C:\\Users\\dmytr\\Source\\Repos\\TaxWebApp\\TaxWebApp.csproj",
-      "packagesPath": "C:\\Users\\dmytr\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dmytr\\Source\\Repos\\TaxWebApp\\obj\\",
+      "projectPath": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\TaxWebApp.csproj",
+      "packagesPath": "C:\\Users\\cutte\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\dmytr\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\cutte\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
