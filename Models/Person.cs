@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using TaxWebApp.Data;
 
 namespace TaxWebApp.Models
 {
@@ -15,6 +16,7 @@ namespace TaxWebApp.Models
         //All Columns from Personals  excel sheet
         //All are type string for right now
 
+        //only used for excel sheet
         public static string LastNumber { get; set; }
 
         public string Number { get; set;}
@@ -35,6 +37,26 @@ namespace TaxWebApp.Models
 
         public string Status { get; set; }
 
+
+        public static string getNextNumber(TaxDataContext contextDB)
+        {
+
+            //Get current People in DB, sorted by Number, pads the Number with 0's to make sure they are the same length when sorted
+            Person[] peopleList = contextDB.Person.OrderBy(m => m.Number.PadLeft(contextDB.Person.Count(), '0')).ToArray();
+
+            //Gets the last number that was used, doesn't check for missing numbers that were deleted by user
+            string currentNumber = peopleList[(peopleList.Length-1)].Number;
+
+
+            //Increment the last Number entered by 1
+            int lastNumber;
+            Int32.TryParse(currentNumber, out lastNumber);
+            lastNumber++;
+
+            Person.LastNumber = lastNumber.ToString();
+            //return next number
+            return lastNumber.ToString();        
+        }
 
         /* OLD WAY
         public long Id { get; set; }
