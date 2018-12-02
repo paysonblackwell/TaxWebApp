@@ -9,6 +9,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TaxWebApp.Data;
 using TaxWebApp.Models;
+using PagedList;
 
 namespace TaxWebApp.Controllers
 {
@@ -142,9 +143,61 @@ namespace TaxWebApp.Controllers
         //    return View();
         //}
 
-        public ViewResult Index()
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
-            return View(_contextDB.Person.ToList());
+            if (searchString != null)
+            {
+                page = 1;
+            }
+            else
+            {
+                searchString = currentFilter;
+            }
+            ViewData["CurrentFilter"] = searchString;
+
+            //Sorting
+            ViewData["CurrentSort"] = sortOrder;
+            ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
+            ViewData["StatusSortParm"] = sortOrder == "Status" ? "Status_desc" : "Status";
+            ViewData["PreparerSortParm"] = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
+            var persons = from p in _contextDB.Person
+                          select p;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                persons = persons.Where(p => p.Name.Contains(searchString));
+
+            }
+
+            switch (sortOrder)
+            {
+                case "Name":
+                    persons = persons.OrderBy(p => p.Name);
+                    break;
+                case "Name_desc":
+                    persons = persons.OrderByDescending(p => p.Name);
+                    break;
+                case "Status":
+                    persons = persons.OrderBy(p => p.Status);
+                    break;
+                case "Status_desc":
+                    persons = persons.OrderByDescending(p => p.Status);
+                    break;
+                case "Preparer":
+                    persons = persons.OrderBy(p => p.Preparer);
+                    break;
+                case "Preparer_desc":
+                    persons = persons.OrderByDescending(p => p.Preparer);
+                    break;
+                default:
+                    persons = persons.OrderBy(p => p.Number);
+                    break;
+            }
+
+            //Number of items on on page
+            int pageSize = 15;
+            int pageNumber = (page ?? 1);
+
+            return View(await PaginatedList<Person>.CreateAsync(persons.AsNoTracking(), page ?? 1, pageSize));
         }
 
         // DEFAULT STUFF
@@ -174,7 +227,7 @@ namespace TaxWebApp.Controllers
                 //Need to check to make sure it is a valid number and it isn't already taken
 
                 //Get the next Number
-                string lastNum = Person.getNextNumber(_contextDB); ;
+                string lastNum = Person.getNextNumber(_contextDB); 
                 Person.LastNumber = lastNum;
 
                 newPerson.Number = lastNum;
@@ -261,6 +314,8 @@ namespace TaxWebApp.Controllers
             {
                 //retrieve the person with the given id to be removed 
                 Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+                string number = person.Number;
+               Person.AvailableNumbers.Push(number);
 
                 //remove that person
                 _contextDB.Person.Remove(person);
