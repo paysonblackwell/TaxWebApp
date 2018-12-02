@@ -30,7 +30,9 @@
     <div>
         <table class="table" style="width:70%">
             <tr>
-                <th>Number</th>
+                <th>
+                    <a asp-action="Index" asp-route-sortOrder="@ViewData["NumberSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Number</a>
+                </th>
                 <th>
                     <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
                 </th>

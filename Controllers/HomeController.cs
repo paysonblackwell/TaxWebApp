@@ -57,6 +57,7 @@ namespace TaxWebApp.Controllers
             ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
             ViewData["StatusSortParm"] = sortOrder == "Status" ? "Status_desc" : "Status";
             ViewData["PreparerSortParm"] = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
+            ViewData["NumberSortParm"] = sortOrder == "Number" ? "Number_desc" : "Number";
             var persons = from p in _contextDB.Person
                           select p;
             if (!String.IsNullOrEmpty(searchString))
@@ -84,6 +85,12 @@ namespace TaxWebApp.Controllers
                     break;
                 case "Preparer_desc":
                     persons = persons.OrderByDescending(p => p.Preparer);
+                    break;
+                case "Number":
+                    persons = persons.OrderBy(p => p.Number);
+                    break;
+                case "Number_desc":
+                    persons = persons.OrderByDescending(p => p.Number);
                     break;
                 default:
                     persons = persons.OrderBy(p => p.Number);
