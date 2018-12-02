@@ -31,7 +31,7 @@ namespace TaxWebApp.Controllers
             _contextDB = context;
         }
 
-
+        HttpClient client = new HttpClient();
         public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             //get the current weather in seattle 
