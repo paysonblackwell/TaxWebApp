@@ -37,10 +37,15 @@ namespace TaxWebApp.Models
 
         public string Status { get; set; }
 
+        public static Stack<string> AvailableNumbers = new Stack<string>();
 
         public static string getNextNumber(TaxDataContext contextDB)
         {
 
+            if (AvailableNumbers.Count()>0)
+            {
+                return AvailableNumbers.Pop();
+            }
             //Get current People in DB, sorted by Number, pads the Number with 0's to make sure they are the same length when sorted
             Person[] peopleList = contextDB.Person.OrderBy(m => m.Number.PadLeft(contextDB.Person.Count(), '0')).ToArray();
 

@@ -174,7 +174,7 @@ namespace TaxWebApp.Controllers
                 //Need to check to make sure it is a valid number and it isn't already taken
 
                 //Get the next Number
-                string lastNum = Person.getNextNumber(_contextDB); ;
+                string lastNum = Person.getNextNumber(_contextDB); 
                 Person.LastNumber = lastNum;
 
                 newPerson.Number = lastNum;
@@ -261,6 +261,8 @@ namespace TaxWebApp.Controllers
             {
                 //retrieve the person with the given id to be removed 
                 Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+                string number = person.Number;
+               Person.AvailableNumbers.Push(number);
 
                 //remove that person
                 _contextDB.Person.Remove(person);
