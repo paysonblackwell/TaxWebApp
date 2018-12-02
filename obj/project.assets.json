@@ -12674,39 +12674,23 @@
     ]
   },
   "packageFolders": {
-<<<<<<< HEAD
-    "C:\\Users\\cutte\\.nuget\\packages\\": {},
-=======
     "C:\\Users\\grace\\.nuget\\packages\\": {},
->>>>>>> Grace
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-<<<<<<< HEAD
-      "projectUniqueName": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\TaxWebApp.csproj",
-      "projectName": "TaxWebApp",
-      "projectPath": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\TaxWebApp.csproj",
-      "packagesPath": "C:\\Users\\cutte\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\cutte\\Desktop\\School\\Fall2018\\WebAppDevelopment\\TaxWebApp\\TaxWebApp\\obj\\",
-=======
       "projectUniqueName": "C:\\Users\\grace\\OneDrive\\Documents\\GitHub\\TaxWebApp\\TaxWebApp.csproj",
       "projectName": "TaxWebApp",
       "projectPath": "C:\\Users\\grace\\OneDrive\\Documents\\GitHub\\TaxWebApp\\TaxWebApp.csproj",
       "packagesPath": "C:\\Users\\grace\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\grace\\OneDrive\\Documents\\GitHub\\TaxWebApp\\obj\\",
->>>>>>> Grace
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-<<<<<<< HEAD
-        "C:\\Users\\cutte\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
         "C:\\Users\\grace\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> Grace
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
