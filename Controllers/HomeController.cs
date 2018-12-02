@@ -14,6 +14,8 @@ using OfficeOpenXml;
 using OfficeOpenXml.Table;
 using TaxWebApp.Data;
 using System.Globalization;
+using System.Net.Http;
+using Newtonsoft.Json;
 
 namespace TaxWebApp.Controllers
 {
@@ -26,10 +28,18 @@ namespace TaxWebApp.Controllers
         {
             _contextDB = context;
         }
-
-
+        HttpClient client = new HttpClient();
         public IActionResult Index(string sortOrder, string searchString)
         {
+            //get the current weather in seattle 
+           var response = client.GetAsync("http://api.openweathermap.org/data/2.5/weather?q=seattle&APPID=00a7eaa5bbe4b48fe43e662611c50a3b").Result;
+            response.EnsureSuccessStatusCode();
+            string result = response.Content.ReadAsStringAsync().Result;
+            dynamic stuff = JsonConvert.DeserializeObject(result.ToString());
+
+            string weather = stuff.weather[0].main;
+            ViewData["Weather"] = weather;
+
             //set-up datetime
             DateTime dt = DateTime.Now;
             String date;

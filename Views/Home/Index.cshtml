@@ -9,15 +9,16 @@
     .tab-content tr:nth-child(even) {
         background-color: #f2f2f2;
     }
-
 </style>
 
 <h1>Today is: @ViewData["toDayDate"] </h1>
 
 <!-- Link to my example Page-->
 @*<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
-<br />
-<a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
+    <br />
+    <a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
+<h1>Current Weather in Seattle is: @ViewData["Weather"] </h1>
+
 
 
 <h2>Customers:</h2>
@@ -48,57 +49,57 @@
         </tr>
         @*OLD WAY TO DISPLAY CONTENT*@
         @*@foreach (Person p in person)
-        {
-        <tr>
-            <td>@p.Number</td>
-            <td>@p.Name</td>
-            <td>@p.New</td>*@
+            {
+            <tr>
+                <td>@p.Number</td>
+                <td>@p.Name</td>
+                <td>@p.New</td>*@
         @*<th>@p.ReferedBy</th>*@
         @*<th>@p.In</th>*@
         @*<th>@p.Scanned</th>*@
         @*<th>@p.Notes</th>
-            <th>@p.Preparer</th>
-            <th>@p.Status</th>
-            <th><a href="/People/Details/@p.Id">Details</a></th>
-            <th><a href="/People/Edit/@p.Id">Edit</a></th>
-        </tr>
-        }*@
+                <th>@p.Preparer</th>
+                <th>@p.Status</th>
+                <th><a href="/People/Details/@p.Id">Details</a></th>
+                <th><a href="/People/Edit/@p.Id">Edit</a></th>
+            </tr>
+            }*@
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Number)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.New)
-            </td>
-            @*<td>
-                @Html.DisplayFor(modelItem => item.ReferedBy)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.In)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Scanned)
-            </td>*@
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Preparer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                <a href="/People/Details/@item.Id">Details</a> |
-                <a href="/People/Edit/@item.Id">Edit</a> 
-                @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.New)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ReferedBy)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.In)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Scanned)
+                    </td>*@
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preparer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a href="/People/Details/@item.Id">Details</a> |
+                    <a href="/People/Edit/@item.Id">Edit</a>
+                    @*<a asp-action="Delete" asp-route-id="@item.Id">Delete</a>*@
+                </td>
+            </tr>
         }
     </table>
 </div>
