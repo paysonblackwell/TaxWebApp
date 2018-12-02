@@ -86,3 +86,4 @@ C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.Views.pd
 C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.dll
 C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\dmytr\Source\Repos\TaxWebApp\obj\Debug\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
+C:\Users\dmytr\source\repos\TaxWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Corporates\Index.g.cshtml.cs

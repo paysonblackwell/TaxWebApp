@@ -1,0 +1,93 @@
+﻿@model PaginatedList<TaxWebApp.Models.Corporate>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<
+<style>
+    .table tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<h1>Today is: @ViewData["toDayDate"] </h1>
+
+<h2>Corporates:</h2>
+<p>
+    <a href="/Corporates/Create/">Create New</a>
+</p>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+<div>
+    <table class="table" style="width:70%">
+        <tr>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NumberSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Number</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
+            </th>
+            <th>Notes</th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["PreparerSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Preparer</a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["StatusSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Status</a>
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Number)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Notes)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Preparer)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a href="/Corporates/Details/@item.Id">Details</a> |
+                    <a href="/Corporates/Edit/@item.Id">Edit</a>
+                </td>
+            </tr>
+        }
+    </table>
+    <br />
+    @{
+        var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+        var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+    }
+
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex - 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @prevDisabled">
+        Previous
+    </a>
+    <a asp-action="Index"
+       asp-route-sortOrder="@ViewData["CurrentSort"]"
+       asp-route-page="@(Model.PageIndex + 1)"
+       asp-route-currentFilter="@ViewData["CurrentFilter"]"
+       class="btn btn-default @nextDisabled">
+        Next
+    </a>
+</div>
