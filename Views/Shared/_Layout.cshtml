@@ -17,6 +17,45 @@
     </environment>
 </head>
 <body>
+    <style>
+        /*Make the navbar text be black*/
+        .navbar-inverse .navbar-nav > li > a {
+            color: #000000;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #000000;
+        }
+
+        body {
+            background-color: #05017e;
+        }
+        /*
+            Green: #088A08
+            Blue: #05017e
+        */
+        /*Colored Sides*/
+        #bg-center {
+            background-color: white;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left:1%;
+            right: 1%;
+            z-index: -1;
+        }
+        #bg-right {
+            background-color: #088A08;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 10%;
+            right: 0;
+            z-index: -1;
+        }
+        
+    </style>
+
     <!--THIS IS THE NAVBAR-->
     <nav class="navbar navbar-inverse navbar-fixed-top" style="background-color: #088A08;">
         <div class="container">
@@ -40,12 +79,18 @@
             </div>
         </div>
     </nav>
-
+    
     <partial name="_CookieConsentPartial" />
+
+
 
     <!--THIS IS THE FOOTER-->
     <div class="container body-content">
+        <div id="bg-center"></div>
+        <!-- <div id="bg-right"></div>-->
+
         @RenderBody()
+
         <hr />
         <footer>
             <p>&copy; 2018 - TaxWebApp</p>
