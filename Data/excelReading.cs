@@ -25,10 +25,15 @@ namespace TaxWebApp.Data
         private const string XlsxContentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
         private readonly TaxDataContext _contextDB;
+        private ExcelHolder excelList;
+
         public ExcelReading(TaxDataContext context)
         {
             _contextDB = context;
             //Need the DB context to upload stuff, called from TaxDataContext
+
+            //Create excelPeople and give db context
+            excelList = new ExcelHolder(_contextDB);
 
             //Takes the name of the file and sheet name
             uploadFile("Tax_List_Sample.xlsx", "Personals"); //FIXED: there is an annoying space in the Excel sheet's name
@@ -36,6 +41,7 @@ namespace TaxWebApp.Data
             uploadFile("Tax_List_Sample.xlsx", "Corporate");
 
             //My way of doing this only allows the files to be formated the way they currently are
+           
         }
 
 
@@ -164,7 +170,7 @@ namespace TaxWebApp.Data
                             //Check to see if they already exist in the DB                          
                             bool doesExist = false;
 
-                            doesExist = _contextDB.Person.Where(m => m.Number == currentPerson.Number).FirstOrDefault() != null ? true : false;
+                            doesExist = excelList.personInDB(currentPerson.Number);
 
                             if(doesExist == true)
                             {
@@ -189,8 +195,13 @@ namespace TaxWebApp.Data
 
 
 
+
+
                                 //Adds person to the DB since it doesn't exist
-                                _contextDB.Person.Add(currentPerson);
+                                //_contextDB.Person.Add(currentPerson);
+
+                                //Add people to the List
+                                excelList.addPerson(currentPerson);
                             }
 
                         }
@@ -283,7 +294,7 @@ namespace TaxWebApp.Data
                         {
                             //Check to see if they already exist in the DB                          
                             bool doesExist = false;
-                            doesExist = _contextDB.Corporate.Where(m => m.Number == currentCorporate.Number).FirstOrDefault() != null ? true : false;
+                            doesExist = excelList.corporateInDB(currentCorporate.Number);//_contextDB.Corporate.Where(m => m.Number == currentCorporate.Number).FirstOrDefault() != null ? true : false;
 
                             if (doesExist == true)
                             {
@@ -309,7 +320,7 @@ namespace TaxWebApp.Data
 
 
                                 //Adds Corporate to the DB since it doesn't exist
-                                _contextDB.Corporate.Add(currentCorporate);
+                                excelList.addCorporate(currentCorporate);//_contextDB.Corporate.Add(currentCorporate);
                             }                            
                         }
                     }
@@ -319,6 +330,9 @@ namespace TaxWebApp.Data
                         break;
                     }
                 }
+
+                //upload models to the DB
+                excelList.uploadLists();
 
                 //Save Changes
                 _contextDB.SaveChanges();

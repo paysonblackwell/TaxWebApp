@@ -55,7 +55,14 @@ namespace TaxWebApp
             //SQL Server Stuff
             services.AddDbContext<TaxDataContext>(options =>
             {
-                string connectionString = _config.GetConnectionString("TaxDataContext");
+
+                /*-------------------------------------------------------------------*/
+                        //Change connectionString to switch off of azure DB
+                /*-------------------------------------------------------------------*/
+
+                //string connectionString = _config.GetConnectionString("TaxDataContext_LocalDB");  //Local DB way
+                string connectionString = _config.GetConnectionString("TaxDataContext");            //Azure DB way
+
                 options.UseSqlServer(connectionString);
             });
 
