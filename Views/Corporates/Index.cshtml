@@ -19,13 +19,17 @@
     <a href="/Corporates/Create/">Create New</a>
 </p>
 
+
 @using (Html.BeginForm())
 {
     <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+        Find by number: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+
+        Find by name: @Html.TextBox("SearchString2", ViewBag.CurrentFilter as string)
         <input type="submit" value="Search" />
     </p>
 }
+
 <div>
     <table class="table" style="width:70%">
         <tr>

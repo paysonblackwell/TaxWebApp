@@ -32,7 +32,7 @@ namespace TaxWebApp.Controllers
         }
 
         HttpClient client = new HttpClient();
-        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string searchString2, string currentFilter, int? page)
         {
             //get the current weather in seattle 
            var response = client.GetAsync("http://api.openweathermap.org/data/2.5/weather?q=seattle&APPID=00a7eaa5bbe4b48fe43e662611c50a3b").Result;
@@ -52,7 +52,7 @@ namespace TaxWebApp.Controllers
             ViewData["toDayDate"] = date;
 
 
-
+            //Sorting and Search
             if (searchString != null)
             {
                 page = 1;
@@ -63,17 +63,23 @@ namespace TaxWebApp.Controllers
             }
             ViewData["CurrentFilter"] = searchString;
 
-            //Sorting
+           
             ViewData["CurrentSort"] = sortOrder;
             ViewData["NameSortParm"] = sortOrder == "Name" ? "Name_desc" : "Name";
             ViewData["StatusSortParm"] = sortOrder == "Status" ? "Status_desc" : "Status";
             ViewData["PreparerSortParm"] = sortOrder == "Preparer" ? "Preparer_desc" : "Preparer";
-            ViewData["NumberSortParm"] = sortOrder == "Number" ? "Number_desc" : "Number";
+            ViewData["NumberSortParm"] = sortOrder == "Number_desc" ? "Number" : "Number_desc";
+
             var persons = from p in _contextDB.Person
                           select p;
             if (!String.IsNullOrEmpty(searchString))
             {
-                persons = persons.Where(p => p.Name.Contains(searchString));
+                persons = persons.Where(p => p.Number.Contains(searchString));
+
+            }
+            if (!String.IsNullOrEmpty(searchString2))
+            {
+                persons = persons.Where(x => x.Name.Contains(searchString2));
 
             }
 

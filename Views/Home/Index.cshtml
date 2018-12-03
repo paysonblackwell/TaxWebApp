@@ -1,6 +1,5 @@
 ﻿@model PaginatedList<TaxWebApp.Models.Person>
 
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
     //ViewData["Title"] = "Home Page";
@@ -16,10 +15,6 @@
 
 <h1>Today is: @ViewData["toDayDate"] </h1>
 
-<!-- Link to my example Page-->
-@*<a href="/People/AllDetails">People Example</a> To a specific Person -> /People/Details/?
-    <br />
-    <a href="/Corporates/AllDetails">Corporates Example</a> To a specific Corporate -> /Corporates/Details/?*@
 <h1>Current Weather in Seattle is: @ViewData["Weather"] </h1>
 
 
@@ -28,12 +23,15 @@
 <p>
     <a href="/People/Create/">Create New</a>
 </p>
+
 @using (Html.BeginForm())
 {
-    <p>
-        Find by name: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
-        <input type="submit" value="Search" />
-    </p>
+<p>
+    Find by number: @Html.TextBox("SearchString", ViewBag.CurrentFilter as string)
+    
+    Find by name: @Html.TextBox("SearchString2", ViewBag.CurrentFilter as string)
+    <input type="submit" value="Search" />
+</p>
 }
     <div>
         <table class="table" style="width:70%">
@@ -53,23 +51,7 @@
                 </th>
                 <th></th>
             </tr>
-        @*OLD WAY TO DISPLAY CONTENT*@
-        @*@foreach (Person p in person)
-            {
-            <tr>
-                <td>@p.Number</td>
-                <td>@p.Name</td>
-                <td>@p.New</td>*@
-        @*<th>@p.ReferedBy</th>*@
-        @*<th>@p.In</th>*@
-        @*<th>@p.Scanned</th>*@
-        @*<th>@p.Notes</th>
-                <th>@p.Preparer</th>
-                <th>@p.Status</th>
-                <th><a href="/People/Details/@p.Id">Details</a></th>
-                <th><a href="/People/Edit/@p.Id">Edit</a></th>
-            </tr>
-            }*@
+       
         @foreach (var item in Model)
         {
             <tr>
@@ -82,15 +64,6 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.New)
                 </td>
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.ReferedBy)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.In)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Scanned)
-                    </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Notes)
                 </td>
