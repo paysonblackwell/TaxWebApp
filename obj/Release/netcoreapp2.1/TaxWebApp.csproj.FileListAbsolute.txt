@@ -5,7 +5,6 @@ C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Release\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Release\netcoreapp2.1\TaxWebApp.Views.dll
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\bin\Release\netcoreapp2.1\TaxWebApp.Views.pdb
-C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.csprojAssemblyReference.cache
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.csproj.CoreCompileInputs.cache
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.RazorAssemblyInfo.cache
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.RazorAssemblyInfo.cs
@@ -79,3 +78,4 @@ C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.dll
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.pdb
 C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.csproj.CopyComplete
+C:\Users\cutte\Desktop\School\Fall2018\WebAppDevelopment\TaxWebApp\TaxWebApp\obj\Release\netcoreapp2.1\TaxWebApp.csprojAssemblyReference.cache

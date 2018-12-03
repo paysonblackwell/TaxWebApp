@@ -70,7 +70,7 @@ using TaxWebApp.Models;
             WriteLiteral("\r\n<p>\r\n    ");
             EndContext();
             BeginContext(205, 37, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "b5a11a22fd144a08a423b0143d3b2f50", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e066f1b5801e41c6a438c9fc16a80f1c", async() => {
                 BeginContext(228, 10, true);
                 WriteLiteral("Create New");
                 EndContext();
@@ -280,7 +280,7 @@ using TaxWebApp.Models;
             WriteLiteral("\r\n            </td>\r\n            <td>\r\n                ");
             EndContext();
             BeginContext(2192, 53, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "189ebe81d350423eb73f2de617139da6", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7e7d55dc3ea94afb9e0f0cd68ff6fa28", async() => {
                 BeginContext(2237, 4, true);
                 WriteLiteral("Edit");
                 EndContext();
@@ -315,7 +315,7 @@ using TaxWebApp.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2265, 59, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "6b4ec37824904754bffa0e515f805d05", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "8a6377e62f324d8aab2e8fd6b5575bb5", async() => {
                 BeginContext(2313, 7, true);
                 WriteLiteral("Details");
                 EndContext();
@@ -350,7 +350,7 @@ using TaxWebApp.Models;
             WriteLiteral(" |\r\n                ");
             EndContext();
             BeginContext(2344, 57, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "388e14c34d224e63aed2e6c759c3c008", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f5b942674fab4d0c838555cf94d622c4", async() => {
                 BeginContext(2391, 6, true);
                 WriteLiteral("Delete");
                 EndContext();
