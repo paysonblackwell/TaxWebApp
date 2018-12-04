@@ -35,7 +35,7 @@ namespace TaxWebApp.Controllers
             return View();
         }
 
-        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
         {
             if (searchString != null)
             {
