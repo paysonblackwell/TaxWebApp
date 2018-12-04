@@ -12,11 +12,6 @@ namespace TaxWebApp.Models
         //ID for database
         public long Id { get; set; }
 
-
-        //All Columns from Personals  excel sheet
-        //All are type string for right now
-
-        //only used for excel sheet
         public static string LastNumber { get; set; }
 
         public string Number { get; set;}
@@ -63,17 +58,5 @@ namespace TaxWebApp.Models
             return lastNumber.ToString();        
         }
 
-        /* OLD WAY
-        public long Id { get; set; }
-
-        public string FirstName { get; set; }
-
-        public string LastName { get; set; }
-
-        public string FullName()
-        {
-            return FirstName + " " + LastName;
-        }
-        */
     }
 }

@@ -22,7 +22,7 @@ namespace TaxWebApp.Controllers
             _contextDB = context;
         }
 
-      
+
 
         public ActionResult Details(long id)
         {
@@ -35,115 +35,7 @@ namespace TaxWebApp.Controllers
             return View();
         }
 
-        //public async ActionResult Details(int id) //Needs to be return type void
-        public ActionResult AllDetails()
-        {
-
-
-            //var peopleList = await _contextDB.Person.ToListAsync(); //async version
-
-            //Get current People in DB, sorted by Number, pads the Number with 0's to make sure they are the same length when sorted
-            Person[] peopleList = _contextDB.Person.OrderBy(m => m.Number.PadLeft(_contextDB.Person.Count(), '0')).ToArray();
-            
-
-            //Bringing current People to details page
-             ViewData["peopleArray"] = peopleList;
-      
-
-            return View();
-
-            /*OLD EXAMPLE of making a person and adding them to the DB
-
-            //Making temp data to upload to DB
-            Person examplePerson = new Person()
-            {
-                Number = "18000",
-                Name = "Payson Blackwell",
-                New = "",
-                ReferedBy = "Brooke Welch",
-                In = "1/1/2018",
-                Scanned = "1/1/2018",
-                Notes = "2018",
-                Preparer = "Dave",
-                Status = "Waiting on Documents"
-            };
-
-            //Checking to see if the example is already a part of it
-            bool doesExist = false;
-            foreach (Person p in _contextDB.Person.ToArray())
-            {
-                if (p.Number == "18000")
-                {
-                    doesExist = true;
-                    break;
-                }
-            }
-
-            //If Example hasn't been added, then add it and save the change
-            if (doesExist == false)
-            {
-                //Adding the example to the DB
-                _contextDB.Person.Add(examplePerson); //Other way: _context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;
-
-                //Save Changes
-                _contextDB.SaveChanges();
-            }
-            */
-
-
-
-            /*Upload to DB using OLD person properties
-            //Making temp data to upload to DB
-            Person examplePerson = new Person()
-            {
-                FirstName = "Payson",
-                LastName = "Blackwell",
-                Id = 1
-            };
-
-
-            //Checking to see if the example is already a part of it
-            bool doesExist = false;
-            foreach(Person p in _contextDB.Person.ToArray())
-            {
-                if(p.Id == 1)
-                {
-                    doesExist = true;
-                    break;
-                }
-            }
-
-            //If Example hasn't been added, then add it and save the change
-            if (doesExist == false)
-            {
-                //Adding the example to the DB
-                _contextDB.Person.Add(examplePerson); //Other way: _context.Entry(examplePerson).State = Microsoft.EntityFrameworkCore.EntityState.Added;
-
-                //To fix Identity Issue, Have to use a Try block and turn IDENTITY_INSERT On and then Off when saving
-                //https://docs.microsoft.com/en-us/ef/core/saving/explicit-values-generated-properties#explicit-values-into-sql-server-identity-columns
-                _contextDB.Database.OpenConnection();
-                try
-                {
-                    _contextDB.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Person ON");
-                    _contextDB.SaveChanges();
-                    _contextDB.Database.ExecuteSqlCommand("SET IDENTITY_INSERT dbo.Person OFF");
-                }
-                finally
-                {
-                    _contextDB.Database.CloseConnection();
-                }
-            }
-            */
-        }
-
-        //***********************
-        //public ActionResult Index()
-        //{
-
-        //    return View();
-        //}
-
-        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page)
+        public async Task<IActionResult> Index(string sortOrder, string searchString, string currentFilter, int? page
         {
             if (searchString != null)
             {
@@ -200,10 +92,6 @@ namespace TaxWebApp.Controllers
             return View(await PaginatedList<Person>.CreateAsync(persons.AsNoTracking(), page ?? 1, pageSize));
         }
 
-        // DEFAULT STUFF
-        /*************************************************************************/
-        /*************************************************************************/
-
         // GET: Person/Create
         public ActionResult Create()
         {
@@ -227,7 +115,7 @@ namespace TaxWebApp.Controllers
                 //Need to check to make sure it is a valid number and it isn't already taken
 
                 //Get the next Number
-                string lastNum = Person.getNextNumber(_contextDB); 
+                string lastNum = Person.getNextNumber(_contextDB);
                 Person.LastNumber = lastNum;
 
                 newPerson.Number = lastNum;
@@ -284,7 +172,7 @@ namespace TaxWebApp.Controllers
                 _contextDB.SaveChanges();
 
                 //return the details of the edited person 
-                return RedirectToAction(nameof(Details), new { id=id});
+                return RedirectToAction(nameof(Details), new { id = id });
             }
             catch
             {
@@ -314,18 +202,14 @@ namespace TaxWebApp.Controllers
             {
                 //retrieve the person with the given id to be removed 
                 Person person = _contextDB.Person.Where(m => m.Id == id).FirstOrDefault();
+
+                //save the number for re-use
                 string number = person.Number;
-               Person.AvailableNumbers.Push(number);
+                Person.AvailableNumbers.Push(number);
 
                 //remove that person
                 _contextDB.Person.Remove(person);
                 _contextDB.SaveChanges();
-
-
-                //Bringing current Person to details page to edit
-                ViewData["personToEdit"] = person;
-
-
 
                 return RedirectToAction("Index", "Home");
             }
@@ -334,6 +218,6 @@ namespace TaxWebApp.Controllers
                 return View();
             }
         }
-       
+
     }
 }

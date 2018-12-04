@@ -130,11 +130,7 @@ namespace TaxWebApp.Controllers
             ViewData["peopleArray"] = peopleList;
             return View();
         }
-
-
-
-
-
+        
 
         // DEFAULT STUFF
         /*************************************************************************/

@@ -32,6 +32,7 @@ namespace TaxWebApp.Controllers
             return View();
         }
 
+
         public async Task<IActionResult> Index(string sortOrder, string searchString, string searchString2, string currentFilter, int? page)
         {
             //set-up datetime
@@ -112,18 +113,6 @@ namespace TaxWebApp.Controllers
             return View(await PaginatedList<Corporate>.CreateAsync(corporates.AsNoTracking(), page ?? 1, pageSize));
         }
 
-        public ActionResult AllDetails()
-        {
-
-
-            //Get current Corporates in DB ordered by number, pads the Number with 0's to make sure they are the same length when sorted
-            Corporate[] CorporatesList = _contextDB.Corporate.OrderBy(m => m.Number.PadLeft(_contextDB.Corporate.Count(), '0')).ToArray();
-
-            //Bringing current Corporates to details page
-            ViewData["corporatesArray"] = CorporatesList;
-
-            return View();
-        }
 
         // GET: Person/Create
         public ActionResult Create()
@@ -165,7 +154,6 @@ namespace TaxWebApp.Controllers
                 return View();
             }
         }
-
 
         // GET: Person/Edit/5
         public ActionResult Edit(long id)
@@ -211,14 +199,13 @@ namespace TaxWebApp.Controllers
                 return View();
             }
         }
-
-        /* */
+        
         // GET: Person/Delete/5
         public ActionResult Delete(int id)
         {
             //retrieve the person with the given id to be removed 
             Corporate corporate = _contextDB.Corporate.Where(m => m.Id == id).FirstOrDefault();
-           
+
             //Bringing current corparation to details page
             ViewData["corporateToDelete"] = corporate;
 
@@ -235,15 +222,13 @@ namespace TaxWebApp.Controllers
                 //retrieve the person with the given id to be removed 
                 Corporate corporate = _contextDB.Corporate.Where(m => m.Id == id).FirstOrDefault();
 
+                //save the number for re-use
+                string number = corporate.Number;
+                Corporate.AvailableNumbers.Push(number);
+
                 //remove that person
                 _contextDB.Corporate.Remove(corporate);
                 _contextDB.SaveChanges();
-
-
-                //Bringing current Person to details page to edit
-               // ViewData["corporateToDelete"] = person;
-
-
 
                 return RedirectToAction("Index", "Home");
             }
