@@ -37,6 +37,7 @@
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["NameSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Name</a>
             </th>
+            <th>New</th>
             <th>Notes</th>
             <th>
                 <a asp-action="Index" asp-route-sortOrder="@ViewData["PreparerSortParm"]" asp-route-currentFilter="@ViewData["CurrentFilter"]">Preparer</a>
@@ -49,27 +50,30 @@
 
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Number)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Name)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Notes)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Preparer)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Status)
-                </td>
-                <td>
-                    <a href="/Corporates/Details/@item.Id">Details</a> |
-                    <a href="/Corporates/Edit/@item.Id">Edit</a>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.New)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preparer)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a href="/Corporates/Details/@item.Id">Details</a> |
+                <a href="/Corporates/Edit/@item.Id">Edit</a>
+            </td>
+        </tr>
         }
     </table>
     <br />
